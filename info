@@ -1,0 +1,19 @@
+to compile:
+
+compile
+
+------------
+
+to run:
+
+runAll input particle_events.dat [dump] [stat] [hist h.root]
+or
+runAll sim 100 [seed 234] [dump] [stat] [hist h.root]
+(to simulate 100 events with random seed 234)
+Square brackets indicate optional arguments.
+
+other executables are produced:
+runDump   - executable with the capability to dump events only
+runStat   - executable with the capability to compute pt means/rms only
+runHist   - executable with the capability to reconstruct B decays only
+
