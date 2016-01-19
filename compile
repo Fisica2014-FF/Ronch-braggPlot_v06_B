@@ -43,15 +43,13 @@ export LIB_NAME=EnergyDist
 rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
 echo "compile " ${LIB_NAME}
 c++ -std=c++0x -Wall -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
-`root-config --cflags`                                              \
--o ${ANALYSIS_PATH}/lib${LIB_NAME}.so cpp/${LIB_NAME}.cc
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so cpp/${LIB_NAME}.cc `root-config --cflags`
 
 export LIB_NAME=BGCalc
 rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
 echo "compile " ${LIB_NAME}
 c++ -std=c++0x -Wall -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
-`root-config --cflags`                                              \
--o ${ANALYSIS_PATH}/lib${LIB_NAME}.so cpp/${LIB_NAME}.cc
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so cpp/${LIB_NAME}.cc `root-config --cflags`
 
 #####################################################################
 
@@ -61,7 +59,7 @@ export EXE_NAME=runDump
 rm -f ${EXE_NAME}
 echo "compile " ${EXE_NAME}
 c++ -std=c++0x -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
--o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed -Wl,-rpath,.        \
 -lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
 -lEventDump
 
@@ -69,15 +67,15 @@ export EXE_NAME=runDist
 rm -f ${EXE_NAME}
 echo "compile " ${EXE_NAME}
 c++ -std=c++0x -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
--o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed -Wl,-rpath,.       \
 -lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
--lEnergyDist
+-lEnergyDist `root-config --libs`
 
 export EXE_NAME=runBG
 rm -f ${EXE_NAME}
 echo "compile " ${EXE_NAME}
 c++ -std=c++0x -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
--o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed   -Wl,-rpath,.     \
 -lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
 -lBGCalc                                                         \
 `root-config --libs`
@@ -86,7 +84,7 @@ export EXE_NAME=runAll
 rm -f ${EXE_NAME}
 echo "compile " ${EXE_NAME}
 c++ -std=c++0x -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
--o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed  -Wl,-rpath,.      \
 -lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
 -lEventDump -lEnergyDist -lBGCalc                         \
 `root-config --libs`

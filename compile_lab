@@ -1,0 +1,122 @@
+#!/bin/bash
+
+#############################################################
+# Had to modify -fPic into -fPIC in order to get it working #
+#############################################################
+
+
+
+export FILE_PATH=${CPPDIR}/Esercizi_Ronchese/braggPlot_v06
+export UTIL_PATH=${CPPDIR}/Ronchese_util/
+cd `dirname $0`
+export ANALYSIS_PATH=`pwd`
+
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ANALYSIS_PATH}
+########################################################################
+export LIB_NAME=AnalysisFramework
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}       \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+export LIB_NAME=AnalysisObjects
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}        \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+export LIB_NAME=AnalysisUtilities
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}        \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+########################################################################
+
+cd ${ANALYSIS_PATH}/AnalysisPlugins
+
+export LIB_NAME=EventDump
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}        \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so ${LIB_NAME}.cc
+
+export LIB_NAME=BGCalc
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}        \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so ${LIB_NAME}.cc
+
+export LIB_NAME=EnergyDist
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+echo "compile " ${LIB_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -shared -I. -I ${UTIL_PATH} -I ${ANALYSIS_PATH}       \
+`root-config --cflags`                                                \
+ -o ${ANALYSIS_PATH}/lib${LIB_NAME}.so ${LIB_NAME}.cc
+
+########################################################################
+
+cd ${ANALYSIS_PATH}
+
+export EXE_NAME=runDump
+rm -f ${EXE_NAME}
+echo "compile " ${EXE_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -I. -I ${ANALYSIS_PATH} -I ${UTIL_PATH}              \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed         \
+-lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities            \
+-lEventDump
+
+export EXE_NAME=runBG
+rm -f ${EXE_NAME}
+echo "compile " ${EXE_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -I. -I ${ANALYSIS_PATH} -I ${UTIL_PATH}              \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed         \
+-lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities            \
+-lBGCalc
+
+export EXE_NAME=runStat
+rm -f ${EXE_NAME}
+echo "compile " ${EXE_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -I. -I ${ANALYSIS_PATH} -I ${UTIL_PATH}         \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
+-lEnergyDist                                                        \
+`root-config --libs`
+
+
+export EXE_NAME=runAll
+rm -f ${EXE_NAME}
+echo "compile " ${EXE_NAME}
+c++ -Wall -g3 -ggdb -gdwarf-3 -fsanitize=address -fPIC -I. -I ${ANALYSIS_PATH} -I ${UTIL_PATH}             \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
+-lEventDump -lBGCalc -lEnergyDist                                   \
+`root-config --libs`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@
 
 #include <TDirectory.h>
 #include <TFile.h>
-#include <TH1.h>
+#include <TH1F.h>
 #include <iostream>
 #include <fstream>
 
@@ -13,8 +13,8 @@
 #include "AnalysisObjects/BraggStatistic.h"
 #include "../dbg_macro.h"
 #include "AnalysisObjects/TotalEnergy.h"
-#include "../util/include/Singleton.h"
-#include "../dbg_macro.h"
+#include "util/include/Singleton.h"
+
 
 
 using namespace std;

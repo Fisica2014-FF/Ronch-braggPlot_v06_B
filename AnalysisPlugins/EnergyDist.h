@@ -3,8 +3,11 @@
 
 //... include header files ...
 
-#include <string>
-#include <vector>
+#include <TDirectory.h>
+#include <TFile.h>
+#include <TH1F.h>
+#include <iostream>
+#include <fstream>
 
 #include "util/include/ActiveObserver.h"
 #include "AnalysisFramework/AnalysisSteering.h"

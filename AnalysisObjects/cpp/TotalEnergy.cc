@@ -7,7 +7,7 @@
 
 #include "../TotalEnergy.h"
 
-#include "../Constants.h"
+#include "AnalysisUtilities/Constants.h"
 #include "../util/include/LazyObserver.h"
 
 TotalEnergy::TotalEnergy() {
