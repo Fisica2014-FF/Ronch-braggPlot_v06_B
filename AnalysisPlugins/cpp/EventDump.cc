@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "../AnalysisFactory.h"
-#include "../Event.h"
+#include "AnalysisFramework/AnalysisFactory.h"
+#include "AnalysisFramework/Event.h"
 
 using namespace std;
 

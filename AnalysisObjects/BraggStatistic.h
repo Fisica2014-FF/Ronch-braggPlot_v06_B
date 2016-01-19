@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include "Event.h"
+//#include "Event.h"
+class Event;
 
 class BraggStatistic {
 

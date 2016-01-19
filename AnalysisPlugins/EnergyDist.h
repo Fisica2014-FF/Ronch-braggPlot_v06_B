@@ -7,8 +7,8 @@
 #include <vector>
 
 #include "util/include/ActiveObserver.h"
-#include "AnalysisSteering.h"
-#include "Event.h"
+#include "AnalysisFramework/AnalysisSteering.h"
+#include "AnalysisFramework/Event.h"
 
 class TH1F;
 

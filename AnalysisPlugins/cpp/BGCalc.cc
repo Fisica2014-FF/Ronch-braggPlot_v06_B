@@ -4,8 +4,8 @@
 
 #include <cmath>
 
-#include "../AnalysisFactory.h"
-#include "../TotalEnergy.h"
+#include "AnalysisFramework/AnalysisFactory.h"
+#include "AnalysisObjects/TotalEnergy.h"
 #include "../util/include/Singleton.h"
 
 using namespace std;

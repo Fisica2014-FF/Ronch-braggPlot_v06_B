@@ -4,7 +4,7 @@
 
 #include <cmath>
 
-#include "../Constants.h"
+#include "AnalysisUtilities/Constants.h"
 #include "../TotalEnergy.h"
 #include "../util/include/Singleton.h"
 

@@ -8,11 +8,11 @@
 #include <iostream>
 #include <fstream>
 
-#include "../AnalysisFactory.h"
-#include "../AnalysisInfo.h"
-#include "../BraggStatistic.h"
+#include "AnalysisFramework/AnalysisFactory.h"
+#include "AnalysisFramework/AnalysisInfo.h"
+#include "AnalysisObjects/BraggStatistic.h"
 #include "../dbg_macro.h"
-#include "../TotalEnergy.h"
+#include "AnalysisObjects/TotalEnergy.h"
 #include "../util/include/Singleton.h"
 #include "../dbg_macro.h"
 

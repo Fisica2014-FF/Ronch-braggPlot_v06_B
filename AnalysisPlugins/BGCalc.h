@@ -5,8 +5,8 @@
 
 #include <vector>
 
-#include "AnalysisSteering.h"
-#include "Event.h"
+#include "AnalysisFramework/AnalysisSteering.h"
+#include "AnalysisFramework/Event.h"
 #include "util/include/ActiveObserver.h"
 
 class BGCalc: public AnalysisSteering, ActiveObserver<Event> {

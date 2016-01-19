@@ -8,7 +8,7 @@
 #ifndef TOTALENERGY_H_
 #define TOTALENERGY_H_
 
-#include "Event.h"
+#include "AnalysisFramework/Event.h"
 #include "util/include/LazyObserver.h"
 #include "util/include/Singleton.h"
 
