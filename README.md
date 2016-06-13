@@ -4,12 +4,13 @@ Final exercise for the course C++ and Object Oriented Programming. Analyse parti
 
 # To compile:
 
-./compile
+`./compile`
 
 ------------
 
 # To run:
-
+```
 runAll input bragg_events.txt [dump] [stat] [hist h.root]
+```
 Square brackets indicate optional arguments.
 
